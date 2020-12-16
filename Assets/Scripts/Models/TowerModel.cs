@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class TowerModel : MonoBehaviour
 {
-    public int damage = 10;
-    public float speedShot = 5f;
+    public int damage;
+    public float speedShot;
+
+    private void Start()
+    {
+        damage = 10;
+        speedShot = 5f;
+    }
 }

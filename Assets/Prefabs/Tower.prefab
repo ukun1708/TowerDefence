@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1863343098825243548}
+  - component: {fileID: 1543192550}
   m_Layer: 0
   m_Name: Tower
   m_TagString: Untagged
@@ -33,6 +34,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1543192550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1863343098825243549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a93942d88e873740b207a711f432d49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+  speedShot: 5
 --- !u!1 &1863343098843269587
 GameObject:
   m_ObjectHideFlags: 0
@@ -44,7 +59,6 @@ GameObject:
   - component: {fileID: 1863343098843269591}
   - component: {fileID: 1863343098843269584}
   - component: {fileID: 1863343098843269585}
-  - component: {fileID: 1863343098843269586}
   - component: {fileID: 1863343098843269590}
   m_Layer: 0
   m_Name: Head
@@ -60,14 +74,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1863343098843269587}
-  m_LocalRotation: {x: -0, y: 0.38230786, z: -0, w: 0.9240351}
-  m_LocalPosition: {x: 27.289509, y: -1.58922, z: -5.356846}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
+  m_LocalPosition: {x: 6, y: -1.58922, z: 5.2}
   m_LocalScale: {x: 5, y: 1.7376, z: 5}
   m_Children:
   - {fileID: 1863343099026051376}
   m_Father: {fileID: 1863343098825243548}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 44.953003, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
 --- !u!33 &1863343098843269584
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -115,19 +129,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &1863343098843269586
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1863343098843269587}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1863343098843269590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,7 +141,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42c6c5a09ecb75b4b9887dddd121e113, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedRotation: 5
+  speedRotation: 10
+  bullet: {fileID: 7976885667408012906, guid: 2638bb129dee69540a974041c091d912, type: 3}
+  towerModel: {fileID: 1543192550}
+  muzzleOfTheTower: {fileID: 1863343099026051377}
+  findRadius: 30
 --- !u!1 &1863343099026051377
 GameObject:
   m_ObjectHideFlags: 0
@@ -152,9 +157,8 @@ GameObject:
   - component: {fileID: 1863343099026051376}
   - component: {fileID: 1863343099026051381}
   - component: {fileID: 1863343099026051382}
-  - component: {fileID: 1863343099026051383}
   m_Layer: 0
-  m_Name: Cube (3)
+  m_Name: Muzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -168,7 +172,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1863343099026051377}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.88}
+  m_LocalPosition: {x: 0, y: 0, z: 0.945}
   m_LocalScale: {x: 0.53642, y: 0.5364201, z: 1.0398356}
   m_Children: []
   m_Father: {fileID: 1863343098843269591}
@@ -221,19 +225,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &1863343099026051383
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1863343099026051377}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1863343099514086538
 GameObject:
   m_ObjectHideFlags: 0
@@ -245,7 +236,6 @@ GameObject:
   - component: {fileID: 1863343099514086542}
   - component: {fileID: 1863343099514086543}
   - component: {fileID: 1863343099514086536}
-  - component: {fileID: 1863343099514086537}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -261,7 +251,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1863343099514086538}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 27.289509, y: -11.24922, z: -5.356846}
+  m_LocalPosition: {x: 6, y: -11.24922, z: 5.2}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 1863343098825243548}
@@ -314,19 +304,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &1863343099514086537
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1863343099514086538}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1863343100759627629
 GameObject:
   m_ObjectHideFlags: 0
@@ -338,7 +315,6 @@ GameObject:
   - component: {fileID: 1863343100759627617}
   - component: {fileID: 1863343100759627618}
   - component: {fileID: 1863343100759627619}
-  - component: {fileID: 1863343100759627628}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -354,7 +330,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1863343100759627629}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 27.289509, y: -5.8992205, z: -5.356846}
+  m_LocalPosition: {x: 6, y: -5.8992205, z: 5.2}
   m_LocalScale: {x: 1.93975, y: 6.252008, z: 1.93975}
   m_Children: []
   m_Father: {fileID: 1863343098825243548}
@@ -407,16 +383,3 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &1863343100759627628
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1863343100759627629}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
