@@ -8,20 +8,20 @@ public class BulletTrajectory : MonoBehaviour
 
     public TowerModel towerModel;
 
-    public EnemyModel enemyModel;
+    public EnemyWaveModel enemyModel;
 
+    private void Update()
+    {
+        transform.Translate(Vector3.forward * speedBullet * Time.deltaTime, Space.Self);
 
+        Destroy(gameObject, 2f);
+    }
 
-    //private void Update()
-    //{
-    //    transform.position = Vector3.MoveTowards(transform.position, target.transform.position, Time.deltaTime * speedBullet);
-    //}
-
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.tag == "Enemy")
-    //    {
-    //        Destroy(gameObject);
-    //    }
-    //}
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Enemy")
+        {
+            Destroy(gameObject);
+        }
+    }
 }

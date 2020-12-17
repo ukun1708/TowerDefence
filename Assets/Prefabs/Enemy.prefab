@@ -197,9 +197,9 @@ GameObject:
   - component: {fileID: 608189237046521444}
   - component: {fileID: 315352975772161722}
   - component: {fileID: 5806133902421624900}
-  - component: {fileID: 3857239073059859531}
   - component: {fileID: -5651151690670735276}
   - component: {fileID: -3747930539087191552}
+  - component: {fileID: -2389572582318496370}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -252,21 +252,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5.0477786, y: 5.104994, z: 9.659993}
   m_Center: {x: 0.8294627, y: -1.5213537, z: -1.5428901}
---- !u!114 &3857239073059859531
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9003543627814419222}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 542be81c979d9404a8c97d10931df610, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 100
-  damage: 10
-  getGold: 1
 --- !u!114 &-5651151690670735276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -279,7 +264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a53ab68ffc5ed364b88ac76c81c75d92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 3
   maxSpeed: 5
   m_Position: 0
   m_PositionUnits: 1
@@ -298,5 +283,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7bf4887c4c87114c8a3663b97f8b4f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyModel: {fileID: 3857239073059859531}
+  enemyModel: {fileID: 0}
   towerModel: {fileID: 1543192550, guid: 2263e4c1b47a7c0498967bd39558ab86, type: 3}
+--- !u!114 &-2389572582318496370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9003543627814419222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b125c0cf7e78a134687abf45972d4f06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
