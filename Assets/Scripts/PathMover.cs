@@ -5,7 +5,7 @@ using Cinemachine;
 
 public class PathMover : MonoBehaviour
 {
-    public float speed = 0f;
+    public float speed = 0;
 
     public float maxSpeed = 5f;
 
