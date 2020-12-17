@@ -4,26 +4,22 @@ using UnityEngine;
 
 public class DamageToBase : MonoBehaviour
 {
-    public PlayerModel playerModel;
-
-    public EnemyModel enemyModel;
+    PlayerModel playerModel;
     void Start()
     {
-        
-    }
-    void Update()
-    {
-        if (playerModel.health < 1)
-        {
-            Destroy(gameObject);
-        }
+        playerModel = GetComponent<PlayerModel>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Enemy")
         {
-            playerModel.health -= enemyModel.damage;
+            playerModel.health -= other.GetComponent<EnemyModel>().damage;
+        }
+
+        if (playerModel.health < 1)
+        {
+            Destroy(gameObject);
         }
     }
 
