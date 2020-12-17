@@ -8,17 +8,24 @@ public class FollowEnemy : MonoBehaviour
 
     Vector3 direction;
 
-    public GameObject bullet;
-
     public TowerModel towerModel;
 
-    public GameObject muzzleOfTheTower;
-
-    float timer = 0f;
+    public EnemyWaveModel enemyModel;
 
     public float findRadius = 30f;
 
     GameObject targetEnemy = null;
+
+    public GameObject bullet;
+
+    string bulletTag = "Bullet";
+
+    bool isShot;
+
+    private void Start()
+    {
+        isShot = false;
+    }
 
     void Update()
     {
@@ -34,7 +41,10 @@ public class FollowEnemy : MonoBehaviour
 
             float dist = Vector3.Distance(targetEnemy.transform.position, transform.position);
 
-            shot();
+            if (isShot == false)
+            {
+                StartCoroutine(Shot());
+            }
 
             if (dist > findRadius)
             {
@@ -64,15 +74,13 @@ public class FollowEnemy : MonoBehaviour
         targetEnemy = minEnemy;
     }
 
-    void shot()
+    IEnumerator Shot()
     {
-        timer -= Time.deltaTime;
+        isShot = true;
+        yield return new WaitForSeconds(towerModel.speedShot);        
 
-        if (timer <= 0f)
-        {
-            timer = towerModel.speedShot;
-            // выстрел       
-
-        }
+        Instantiate(bullet, transform.position, transform.rotation);
+        bullet.tag = bulletTag;
+        isShot = false;
     }
 }
