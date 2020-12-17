@@ -4,25 +4,20 @@ using UnityEngine;
 
 public class DestroyEnemy : MonoBehaviour
 {
-
-    public EnemyModel enemyModel;
+    
+    EnemyModel enemyModel;
 
     public TowerModel towerModel;
 
-    private void Update()
+    private void Start()
     {
-        if (enemyModel.health < 1)
-        {
-            Destroy(gameObject);
-        }
+        enemyModel = GetComponent<EnemyModel>();
     }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Base")
         {
             EnemyCreator.Singleton.enemyList.Remove(gameObject);
-
             Destroy(gameObject);
             
         }
@@ -30,6 +25,12 @@ public class DestroyEnemy : MonoBehaviour
         if (other.tag == "Bullet")
         {
             enemyModel.health -= towerModel.damage;
+
+            if (enemyModel.health < 1)
+            {
+                EnemyCreator.Singleton.enemyList.Remove(gameObject);
+                Destroy(gameObject);
+            }
         }
     }
 }
