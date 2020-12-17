@@ -9,83 +9,62 @@ public class EnemyCreator : MonoBehaviour
 
     public Transform pointSpawn;
 
-    public float waitTime;
-
     public CinemachineSmoothPath path;
 
-    static string enemy = "Enemy";
+    static string enemyTag = "Enemy";
 
-    public List<GameObject> enemyList = new List<GameObject>();
+    public List<GameObject> enemyList;
 
     public static EnemyCreator Singleton;
 
-    int enemyCount;
+    public List<EnemyWaveModel> enemyWaveModels;
 
-    bool waveOne, waveTwo, waveThree;
+    public int countEnemy;
+
+    public int waveIndex = 0;
 
     void Start()
     {
         Singleton = this;
 
-        waveOne = true;
-
-        waveTwo = false;
-
-        waveThree = false;
-
-        waitTime = 2;
-
-        enemyCount = Random.Range(10, 20);
-
-        
-        
+        StartCoroutine(CreateWave(enemyWaveModels[waveIndex]));
     }
     void Update()
     {
-        if (waveOne == true)
-        {
-            StartCoroutine(CreateWaveOne(waitTime));
-
-            waveOne = false;
-
-            if (enemyCount <= 0)
-            {
-                waveTwo = true;
-
-                if (waveTwo == true)
-                {
-                    StartCoroutine(CreateWaveTwo(waitTime));
-
-                    waveTwo = false;
-                }
-            }
-        }
+        
     }
 
-    IEnumerator CreateWaveOne(float repeatTime)
+    IEnumerator CreateWave(EnemyWaveModel enemyModel)
     {
+        enemyList = new List<GameObject>();
+
+        int enemyCount = Random.Range(enemyModel.minEnemyCount, enemyModel.maxEnemyCount);
+
         for (int i = 0; i < enemyCount; i++)
         {
-            enemyPrefabs.GetComponent<PathMover>().m_Path = path;
-            enemyPrefabs.GetComponent<PathMover>().speed = 10f;
-            enemyList.Add(Instantiate(enemyPrefabs, pointSpawn.position, Quaternion.identity));
-            enemyPrefabs.tag = enemy;
+            GameObject enemy = Instantiate(enemyPrefabs, pointSpawn.position, Quaternion.identity);
 
-            yield return new WaitForSeconds(repeatTime);
+            enemy.GetComponent<PathMover>().m_Path = path;
+            enemy.GetComponent<PathMover>().speed = enemyModel.speed;
+            enemy.GetComponent<EnemyModel>().health = enemyModel.health;
+            enemy.GetComponent<EnemyModel>().damage = enemyModel.damage;
+            enemy.GetComponent<EnemyModel>().getGold = enemyModel.getGold;
+            enemyList.Add(enemy);
+            enemy.tag = enemyTag;
+
+            yield return new WaitForSeconds(enemyModel.timeWait);
         }
-    }
 
-    IEnumerator CreateWaveTwo(float repeatTime)
-    {
-        for (int i = 0; i < enemyCount; i++)
+        while (enemyList.Count > 0)
         {
-            enemyPrefabs.GetComponent<PathMover>().m_Path = path;
-            enemyList.Add(Instantiate(enemyPrefabs, pointSpawn.position, Quaternion.identity));
-            enemyPrefabs.tag = enemy;
-
-            yield return new WaitForSeconds(repeatTime);
+            yield return null;
         }
 
-        yield return new WaitForSeconds(5f);
+        waveIndex++;
+
+        if (waveIndex < enemyWaveModels.Count)
+        {
+            StartCoroutine(CreateWave(enemyWaveModels[waveIndex]));
+        }
     }
 }
