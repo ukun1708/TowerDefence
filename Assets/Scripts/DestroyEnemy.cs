@@ -26,14 +26,14 @@ public class DestroyEnemy : MonoBehaviour
 
         if (other.tag == "Bullet")
         {
-            enemyModel.health -= towerModel.damage;
-
             healthBar.HealthBarUpdate(enemyModel.health / enemyModel.maxHealth);
 
             if (enemyModel.health < 1)
             {
                 EnemyCreator.Singleton.enemyList.Remove(gameObject);
                 Destroy(gameObject);
+
+                PlayerModel.Singleton.gold += enemyModel.getGold; 
             }
         }
     }
