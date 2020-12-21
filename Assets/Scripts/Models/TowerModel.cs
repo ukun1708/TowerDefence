@@ -10,6 +10,6 @@ public class TowerModel : MonoBehaviour
     private void Start()
     {
         damage = 10;
-        speedShot = 5f;
+        speedShot = 2f;
     }
 }
