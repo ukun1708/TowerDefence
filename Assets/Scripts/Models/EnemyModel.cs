@@ -9,7 +9,6 @@ public class EnemyModel : MonoBehaviour
     public int getGold;
 
     public float maxHealth;
-
     private void Start()
     {
         maxHealth = health;
