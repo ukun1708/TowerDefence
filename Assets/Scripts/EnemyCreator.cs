@@ -7,6 +7,8 @@ public class EnemyCreator : MonoBehaviour
 {
     public GameObject enemyPrefabs;
 
+    public GameObject winMenu;
+
     public Transform pointSpawn;
 
     public CinemachineSmoothPath path;
@@ -27,11 +29,16 @@ public class EnemyCreator : MonoBehaviour
     {
         Singleton = this;
 
+        winMenu.SetActive(false);
+
         StartCoroutine(CreateWave(enemyWaveModels[waveIndex]));
     }
     void Update()
     {
-        
+        if (waveIndex == 3)
+        {
+            winMenu.SetActive(true);
+        }
     }
 
     IEnumerator CreateWave(EnemyWaveModel enemyModel)
