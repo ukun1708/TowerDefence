@@ -82,5 +82,10 @@ public class FollowEnemy : MonoBehaviour
         Instantiate(bullet, transform.position, transform.rotation);
         bullet.tag = bulletTag;
         isShot = false;
+
+        if (targetEnemy != null)
+        {
+            targetEnemy.GetComponent<EnemyModel>().health -= towerModel.damage;
+        }
     }
 }
