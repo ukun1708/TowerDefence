@@ -4,7 +4,14 @@ using UnityEngine;
 
 public class EnemyModel : MonoBehaviour
 {
-    public int health;
+    public float health;
     public int damage;
     public int getGold;
+
+    public float maxHealth;
+
+    private void Start()
+    {
+        maxHealth = health;
+    }
 }
