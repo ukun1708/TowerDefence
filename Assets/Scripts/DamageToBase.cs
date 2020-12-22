@@ -21,7 +21,7 @@ public class DamageToBase : MonoBehaviour
 
         if (playerModel.health < 1)
         {
-            Destroy(gameObject);
+            EnemyCreator.Singleton.winMenu.SetActive(true);
         }
     }
 
