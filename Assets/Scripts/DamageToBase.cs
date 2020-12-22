@@ -14,7 +14,9 @@ public class DamageToBase : MonoBehaviour
     {
         if (other.tag == "Enemy")
         {
-            playerModel.health -= other.GetComponent<EnemyModel>().damage;
+            EnemyModel model = other.gameObject.GetComponent<EnemyModel>();
+
+            playerModel.health -= model.damage;
         }
 
         if (playerModel.health < 1)
