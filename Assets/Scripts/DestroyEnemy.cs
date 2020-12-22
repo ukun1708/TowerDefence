@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DestroyEnemy : MonoBehaviour
-{
-    
+{    
     EnemyModel enemyModel;
 
     public TowerModel towerModel;
@@ -29,10 +28,12 @@ public class DestroyEnemy : MonoBehaviour
 
             if (enemyModel.health < 1)
             {
+                DestroyedEnemiesCount.Singleton.destroyedEnemyCount += 1;
+
+                PlayerModel.Singleton.gold += enemyModel.getGold;
+
                 EnemyCreator.Singleton.enemyList.Remove(gameObject);
                 Destroy(gameObject);
-
-                PlayerModel.Singleton.gold += enemyModel.getGold; 
             }
         }
     }
