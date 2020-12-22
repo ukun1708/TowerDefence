@@ -20,8 +20,7 @@ public class DestroyEnemy : MonoBehaviour
         if (other.tag == "Base")
         {
             EnemyCreator.Singleton.enemyList.Remove(gameObject);
-            Destroy(gameObject);
-            
+            Destroy(gameObject, 0.2f);
         }
 
         if (other.tag == "Bullet")
