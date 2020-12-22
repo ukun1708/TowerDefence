@@ -22,9 +22,17 @@ public class FollowEnemy : MonoBehaviour
 
     bool isShot;
 
+    public bool shoting;
+
+    public static FollowEnemy Singleton;
+
     private void Start()
     {
+        Singleton = this;
+
         isShot = false;
+
+        shoting = true;
     }
 
     void Update()
@@ -77,7 +85,7 @@ public class FollowEnemy : MonoBehaviour
     IEnumerator Shot()
     {
         isShot = true;
-        yield return new WaitForSeconds(towerModel.speedShot);        
+        yield return new WaitForSeconds(towerModel.speedShot);
 
         Instantiate(bullet, transform.position, transform.rotation);
         bullet.tag = bulletTag;
