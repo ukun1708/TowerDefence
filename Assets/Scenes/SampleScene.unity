@@ -3791,7 +3791,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroyedEnemyCount: 0
   destroyedEnemyText: {fileID: 991393205}
-  titleText: {fileID: 0}
+  titleText: {fileID: 14192264}
 --- !u!1 &1911048032
 GameObject:
   m_ObjectHideFlags: 0
