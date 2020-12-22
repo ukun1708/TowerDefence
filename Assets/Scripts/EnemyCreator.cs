@@ -13,7 +13,7 @@ public class EnemyCreator : MonoBehaviour
 
     public CinemachineSmoothPath path;
 
-    static string enemyTag = "Enemy";
+    static string enemyTag;
 
     public List<GameObject> enemyList;
 
@@ -57,6 +57,7 @@ public class EnemyCreator : MonoBehaviour
             enemy.GetComponent<EnemyModel>().damage = enemyModel.damage;
             enemy.GetComponent<EnemyModel>().getGold = enemyModel.getGold;
             enemyList.Add(enemy);
+            enemyTag = "Enemy";
             enemy.tag = enemyTag;
 
             yield return new WaitForSeconds(enemyModel.timeWait);
