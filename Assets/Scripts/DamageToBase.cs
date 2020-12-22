@@ -22,6 +22,13 @@ public class DamageToBase : MonoBehaviour
         if (playerModel.health < 1)
         {
             EnemyCreator.Singleton.winMenu.SetActive(true);
+
+            foreach (GameObject enemy in EnemyCreator.Singleton.enemyList)
+            {
+                enemy.GetComponent<PathMover>().speed = 0f;
+            }
+
+            FollowEnemy.Singleton.shoting = false;
         }
     }
 
