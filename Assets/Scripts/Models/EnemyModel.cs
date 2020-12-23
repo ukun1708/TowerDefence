@@ -13,4 +13,16 @@ public class EnemyModel : MonoBehaviour
     {
         maxHealth = health;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        var obj = other.transform.GetComponent<Idamage>();
+
+        if (obj != null)
+        {
+            obj.TakeDamage(damage);
+
+            Destroy(gameObject);
+        }
+    }
 }
