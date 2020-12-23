@@ -26,11 +26,13 @@ public class BulletModel : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        var obj = other.transform.GetComponent<Idamage>();
+        Idamage idam = null;
 
-        if (obj != null)
+        other.TryGetComponent<Idamage>(out idam);
+
+        if (idam != null)
         {
-            obj.TakeDamage(damage);
+            idam.TakeDamage(damage);
 
             Destroy(gameObject);
         }
