@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DestroyEnemy : MonoBehaviour
+public class DestroyEnemy : MonoBehaviour, Idamage
 {    
     EnemyModel enemyModel;
 
@@ -14,6 +14,17 @@ public class DestroyEnemy : MonoBehaviour
     {
         enemyModel = GetComponent<EnemyModel>();
     }
+
+    private void Update()
+    {
+        if (enemyModel.health < 1)
+        {
+            PlayerModel.Singleton.gold += enemyModel.getGold;
+
+            EnemyCreator.Singleton.enemyList.Remove(gameObject);
+            Destroy(gameObject);
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Base")
@@ -21,20 +32,12 @@ public class DestroyEnemy : MonoBehaviour
             EnemyCreator.Singleton.enemyList.Remove(gameObject);
             Destroy(gameObject, 0.2f);
         }
+    }
 
-        if (other.tag == "Bullet")
-        {
-            healthBar.HealthBarUpdate(enemyModel.health / enemyModel.maxHealth);
+    public void TakeDamage(float damage)
+    {
+        enemyModel.health -= damage;
 
-            if (enemyModel.health < 1)
-            {
-                DestroyedEnemiesCount.Singleton.destroyedEnemyCount += 1;
-
-                PlayerModel.Singleton.gold += enemyModel.getGold;
-
-                EnemyCreator.Singleton.enemyList.Remove(gameObject);
-                Destroy(gameObject);
-            }
-        }
+        healthBar.HealthBarUpdate(enemyModel.health / enemyModel.maxHealth);
     }
 }
