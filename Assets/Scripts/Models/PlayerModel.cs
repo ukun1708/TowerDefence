@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerModel : MonoBehaviour
 {
-    public int health;
+    public float health;
     public int gold;
 
     public static PlayerModel Singleton;
@@ -13,7 +13,7 @@ public class PlayerModel : MonoBehaviour
     {
         Singleton = this;
 
-        health = 100;
+        health = 100f;
         gold = 0;
     }
 }
