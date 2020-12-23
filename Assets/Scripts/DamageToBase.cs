@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DamageToBase : MonoBehaviour
+public class DamageToBase : MonoBehaviour, Idamage
 {
     PlayerModel playerModel;
     void Start()
@@ -10,14 +10,9 @@ public class DamageToBase : MonoBehaviour
         playerModel = GetComponent<PlayerModel>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void TakeDamage(float damage)
     {
-        if (other.tag == "Enemy")
-        {
-            EnemyModel model = other.gameObject.GetComponent<EnemyModel>();
-
-            playerModel.health -= model.damage;
-        }
+        playerModel.health -= damage;
 
         if (playerModel.health < 1)
         {
@@ -31,6 +26,4 @@ public class DamageToBase : MonoBehaviour
             FollowEnemy.Singleton.shoting = false;
         }
     }
-
-
 }
